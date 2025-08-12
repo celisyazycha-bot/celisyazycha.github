@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>flowers</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .blinking-name {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff69b4;
+            text-shadow: 0 0 10px #ff1493, 0 0 20px #ff69b4, 0 0 30px #ffb6c1;
+            animation: glow 1.5s infinite alternate;
+            margin-top: 20px;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff1493; }
+            to { text-shadow: 0 0 20px #ff1493, 0 0 30px #ff69b4, 0 0 40px #ffb6c1; }
+        }
+        #music-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff69b4;
+            transition: 0.3s;
+        }
+        #music-btn:hover {
+            box-shadow: 0 0 20px #ff1493, 0 0 40px #ff69b4;
+        }
+        .photo-container {
+            position: relative;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .photo-container img {
+            max-width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #ff69b4;
+            animation: zoomGlow 4s infinite alternate;
+        }
+        @keyframes zoomGlow {
+            from { transform: scale(1); box-shadow: 0 0 20px #ff69b4; }
+            to { transform: scale(1.05); box-shadow: 0 0 40px #ff1493; }
+        }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: red;
+            animation: floatUp 4s linear forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="container">
+    <div class="night"></div>
+    <div class="flowers"></div><h1 class="blinking-name">🌸 P U T R I 🌸</h1>
+
+<div class="photo-container" id="photo-area">
+    <img src="gambar1.jpg" alt="gambar1.jpg">
+</div>
+
+<button id="music-btn">😝💗mainkan musiknya manis</button>
+<audio id="bg-music" loop>
+    <source src="KAMU YANG KU MAU.mp3" type="audio/mpeg">
+</audio>
+    
+</head>
+<body>
+    
+    
+       
+
+<script src="main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const music = document.getElementById('bg-music');
+        const btn = document.getElementById('music-btn');
+        let playing = false;
+
+        btn.addEventListener('click', () => {
+            if (playing) {
+                music.pause();
+                btn.textContent = " 😝💗mainkan musiknya manis";
+            } else {
+                music.play();
+                btn.textContent = "⏸ hentikan musik";
+            }
+            playing = !playing;
+        });
+
+        // Animasi hati mengambang
+        const photoArea = document.getElementById('photo-area');
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 80 + 10 + '%';
+            heart.style.top = '90%';
+            heart.innerHTML = '❤️';
+            photoArea.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }, 800);
+    });
+</script>
+
+</body>
+</html>
